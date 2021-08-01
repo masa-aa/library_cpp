@@ -101,9 +101,20 @@ T sl.min()
 ##### 計算量
 $O(1)$ である．
 
+### operator[]
+```cpp
+T operator[](int k)
+```
+`sl`の`k`番目にアクセスする．
+
+##### 制約
+$0\leq k < N$
+
+##### 計算量
+$O(\log(N))$ である．
+
 ### その他
-* `bool empty()` 
-* `void clear()`
-* `T at(int k)`
-* `T operator[](int k)`
+* `bool empty()` : `sl`が空かどうか
+* `void clear()` : `sl`の要素をすべて削除
+* `T at(int k)` : `sl[k]`と同じ
 * `inline void print()`
