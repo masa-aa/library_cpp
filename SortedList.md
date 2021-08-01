@@ -133,7 +133,8 @@ $O(1)$ である．
   
 中央値とは，`n = |S|`とした時，0から数えて`(n-1)/2`番目の要素   
   
-* 解答例
+<details><summary>解答例 </summary><div>
+
 ```cpp
 int main() {
     SortedList<int> sl;
@@ -154,7 +155,7 @@ int main() {
     }
 }
 ```
-
+</div></details>
 ---
 ### Remark
 `set<pair<T, unsigned int>>`と`map<T, unsigned int>`を持った時間計算量が重たい実装．もっといい方法があるかも．
