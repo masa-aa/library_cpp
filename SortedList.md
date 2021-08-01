@@ -9,7 +9,7 @@ int main() {
 }
 ```
 ### コンストラクタ
-```
+```cpp
 (1) SortedList<S> sl()
 (2) SortedList<S> sl(vector<T> v)
 (3) SortedList<S> sl(initializer_list<T> v)
@@ -83,6 +83,18 @@ int sl.count(T x)
 ##### 計算量
 $O(\log(N))$ である．
 
+### operator[]
+```cpp
+T operator[](int k)
+```
+`sl`の`k`番目にアクセスする．
+
+##### 制約
+$0\leq k < N$
+
+##### 計算量
+$O(\log(N))$ である．
+
 ### max
 ```cpp
 T sl.max()
@@ -101,20 +113,31 @@ T sl.min()
 ##### 計算量
 $O(1)$ である．
 
-### operator[]
-```cpp
-T operator[](int k)
-```
-`sl`の`k`番目にアクセスする．
 
-##### 制約
-$0\leq k < N$
-
-##### 計算量
-$O(\log(N))$ である．
 
 ### その他
 * `bool empty()` : `sl`が空かどうか
 * `void clear()` : `sl`の要素をすべて削除
 * `T at(int k)` : `sl[k]`と同じ
 * `inline void print()`
+
+## 使用例
+```cpp
+int main() {
+    SortedList<int> sl;
+    int q;
+    cin >> q;
+    while (q--) {
+        int query;
+        cin >> query;
+        if (query == 1) {
+            int x;
+            cin >> x;
+            sl.add(x);
+        } else {
+            int k = (sl.size - 1) / 2;
+            cout << sl[k] << '\n';
+        }
+    }
+}
+```
