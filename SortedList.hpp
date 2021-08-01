@@ -17,7 +17,7 @@ template <typename T> struct SortedList {
             add(v);
         }
     }
-    SortedList(initializer_list<int> a) {
+    SortedList(initializer_list<T> a) {
         for (T const &v : a) {
             add(v);
         }
@@ -54,10 +54,10 @@ template <typename T> struct SortedList {
         return bisect_right(x) - bisect_left(x);
     }
     T max() {
-        return at(size - 1);
+        return (*data.rbegin()).first;
     }
     T min() {
-        return at(0);
+        return (*data.begin()).first;
     }
     bool empty() {
         return size == 0;
