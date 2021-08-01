@@ -147,6 +147,7 @@ int main() {
             cin >> x;
             sl.add(x);
         } else {
+            // sl.print();
             int k = (sl.size - 1) / 2;
             cout << sl[k] << '\n';
         }
