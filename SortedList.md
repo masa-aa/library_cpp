@@ -133,7 +133,7 @@ $O(1)$ である．
   
 中央値とは，`n = |S|`とした時，0から数えて`(n-1)/2`番目の要素   
   
-<details><summary>解答例 </summary><div>
+<details><summary>解答例 (▶をクリックしてね) </summary><div>
 
 ```cpp
 int main() {
