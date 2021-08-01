@@ -153,3 +153,7 @@ int main() {
     }
 }
 ```
+
+---
+### Remark
+`set<pair<T, unsigned int>>`と`map<T, unsigned int>`を持った時間計算量が重たい実装．もっといい方法があるかも．
