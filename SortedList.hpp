@@ -74,13 +74,35 @@ template <typename T> struct SortedList {
     T operator[](const T &k) {
         return (*data.find_by_order(k)).first;
     }
-    inline void print() {
-        cout << "[";
-        for (int i = 0; i < size; ++i) {
-            if (i)
-                cout << ", ";
-            cout << (*data.find_by_order(i)).first;
+    T operator<<(ostream &ost) {
+        cout << 1 << endl;
+    }
+    inline void print(bool debug = false) {
+        if (debug) {
+            cout << "[";
+            for (int i = 0; i < size; ++i) {
+                if (i)
+                    cout << ", ";
+                cout << (*data.find_by_order(i)).first;
+            }
+            cout << "]\n";
+        } else {
+            for (int i = 0; i < size; ++i) {
+                if (i)
+                    cout << " ";
+                cout << (*data.find_by_order(i)).first;
+            }
+            cout << "\n";
         }
-        cout << "]\n";
     }
 };
+template <class T> ostream &operator<<(ostream &ost, const SortedList<T> &v) {
+    ost << "[";
+    for (int i = 0; i < v.size; ++i) {
+        if (i)
+            ost << ", ";
+        ost << (*v.data.find_by_order(i)).first;
+    }
+    ost << "]";
+    return ost;
+}
