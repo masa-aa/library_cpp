@@ -1,5 +1,5 @@
 # SortedList
-ランダムアクセスが可能なmultisetのようなものである．  
+`k`番目の要素に $O(\log(N))$ でアクセスできるmultisetのようなものである．  
 以下のようにアクセスができる．  [実装例](https://github.com/masa-aa/library_cpp/blob/main/SortedList.hpp )
 ```cpp
 int main() {
