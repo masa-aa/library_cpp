@@ -34,7 +34,7 @@ void sl.remove(T x)
 ```
 `sl`から`x`を1つ削除する．
 ##### 制約
-`sl`に`x`が存在する必要がある．
+`sl`に`x`が存在する必要がある．存在しないと`x`より大きい最小の値を削除する．
 ##### 計算量
 $O(\log(N))$ である．
 
@@ -159,4 +159,7 @@ int main() {
 
 ---
 ### Remark
-`set<pair<T, unsigned int>>`と`map<T, unsigned int>`を持った時間計算量が重たい実装．もっといい方法があるかも．
+`insert`の回数が`unsigned int`の最大値以下で必要がある．  
+`insert`の回数がこれより多くなる場合は`unsigned long long`等を用いる．
+### ToDo 
+`less<T>`を`greater<T>`のように変更すると`bisect`関連が壊れる．

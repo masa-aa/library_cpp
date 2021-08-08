@@ -8,7 +8,7 @@ template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_ta
 template <typename T> struct SortedList {
     size_t size = 0;
     ordered_set<pair<T, unsigned int>> data;
-    unsigned int counter;
+    unsigned int counter = 0;
 
     SortedList() {
     }
@@ -58,6 +58,9 @@ template <typename T> struct SortedList {
     }
     bool empty() {
         return size == 0;
+    }
+    operator bool() const {
+        return size != 0;
     }
     void clear() {
         size = 0;
