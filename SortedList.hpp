@@ -8,7 +8,7 @@ template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_ta
 template <typename T> struct SortedList {
     size_t size = 0;
     ordered_set<pair<T, unsigned int>> data;
-    map<T, unsigned int> counter;
+    unsigned int counter;
 
     SortedList() {
     }
@@ -23,22 +23,19 @@ template <typename T> struct SortedList {
         }
     }
     void add(const T &x) {
-        data.insert({x, counter[x]++});
+        data.insert({x, counter++});
         size++;
     }
     void remove(const T &x) {
-        if (counter[x] == 0) {
-            cerr << "!! Error " << x << " is not exist" << endl;
-            exit(0);
-        };
-        data.erase({x, --counter[x]});
+        data.erase(data.find_by_order(bisect_left(x)));
         size--;
     }
     void remove_if(const T &x) {
-        if (counter[x] == 0)
-            return;
-        data.erase({x, --counter[x]});
-        size--;
+        int l = bisect_left(x), r = bisect_right(x);
+        if (r - l) {
+            data.erase(data.find_by_order(l));
+            size--;
+        }
     }
     int bisect_left(const T &x) {
         return data.order_of_key({x, 0});
@@ -64,8 +61,8 @@ template <typename T> struct SortedList {
     }
     void clear() {
         size = 0;
+        counter = 0;
         data.clear();
-        counter.clear();
     }
     T at(const T &k) {
         assert(0 <= k and k < size);
@@ -73,9 +70,6 @@ template <typename T> struct SortedList {
     }
     T operator[](const T &k) {
         return (*data.find_by_order(k)).first;
-    }
-    T operator<<(ostream &ost) {
-        cout << 1 << endl;
     }
     inline void print(bool debug = false) {
         if (debug) {
