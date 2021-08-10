@@ -37,6 +37,19 @@ template <typename T> struct SortedList {
             size--;
         }
     }
+    T pop(const int &k) {
+        auto it = data.find_by_order(k);
+        T res = (*it).first;
+        data.erase(it);
+        size--;
+        return res;
+    }
+    T pop() {
+        auto it = data.find_by_order(--size);
+        T res = (*it).first;
+        data.erase(it);
+        return res;
+    }
     int bisect_left(const T &x) {
         return data.order_of_key({x, 0});
     }
@@ -59,9 +72,7 @@ template <typename T> struct SortedList {
     bool empty() {
         return size == 0;
     }
-    operator bool() const {
-        return size != 0;
-    }
+
     void clear() {
         size = 0;
         counter = 0;
@@ -71,8 +82,15 @@ template <typename T> struct SortedList {
         assert(0 <= k and k < size);
         return (*data.find_by_order(k)).first;
     }
-    T operator[](const T &k) {
+    T operator[](const std::size_t &k) {
         return (*data.find_by_order(k)).first;
+    }
+    void update(const std::size_t &k, const T &x) {
+        data.erase(data.find_by_order(k));
+        add(x);
+    }
+    operator bool() const {
+        return size != 0;
     }
     inline void print(bool debug = false) {
         if (debug) {

@@ -47,6 +47,16 @@ void sl.remove_if(T x)
 ##### 計算量
 $O(\log(N))$ である．
 
+### pop
+```cpp
+T sl.pop()
+T sl.pop(int k)
+```
+`sl`の`k`番目を削除し取得する．`k`を指定しない時，一番大きい要素を1つ削除し取得する．
+
+##### 計算量
+$O(\log(N))$ である．
+
 ### bisect_left
 ```cpp
 int sl.bisect_left(T x)
@@ -95,6 +105,15 @@ $0\leq k < N$
 ##### 計算量
 $O(\log(N))$ である．
 
+### update
+```cpp
+void sl.update(int k, T x)
+```
+`sl`の`k`番目を`x`に変更し並び替える．
+
+##### 計算量
+$O(\log(N))$ である．
+
 ### max
 ```cpp
 T sl.max()
@@ -120,6 +139,7 @@ $O(1)$ である．
 * `void clear()` : `sl`の要素をすべて削除
 * `T at(int k)` : `sl[k]`と同じ
 * `inline void print()`
+* `operator bool()` : list が空か否かで`false`，`true`を返す．
 
 ---
 
