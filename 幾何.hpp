@@ -1,4 +1,13 @@
 using Point = complex<double>;
+
+inline double dist(Point &s, Point &t) {
+    return abs(s - t);
+}
+
+Point mid_point(Point &s, Point &t) {
+    return (s + t) / 2.0;
+}
+
 pair<double, double> unpack(Point P) {
     return {P.real(), P.imag()};
 }
@@ -42,7 +51,34 @@ struct Circle {
     }
 };
 
+bool is_intersection(Circle c1, Circle c2) {
+    // 2円の共通部分の面積が正か？
+    auto [p1, r1] = c1;
+    auto [p2, r2] = c2;
+    double d = dist(p1, p2);
+    if (d - r1 - r2 > -EPS)
+        return 0;
+
+    return 1;
+}
+
+int intersection_count(Circle c1, Circle c2) {
+    // 2円の共有点の個数
+    auto [p1, r1] = c1;
+    auto [p2, r2] = c2;
+
+    double d = dist(p1, p2), diff = fabs(r1 - r2), sum = r1 + r2;
+    if (EPS < diff - d or EPS < d - sum)
+        return 0;
+    if (fabs(sum - d) < EPS or fabs(diff - d) < EPS)
+        return 1;
+
+    return 2;
+}
+
 Line intersection_line(Circle c1, Circle c2) {
+    // 2円の共有点を通る直線
+
     auto [p1, r1] = c1;
     auto [p2, r2] = c2;
     auto [x1, y1] = unpack(p1);
@@ -52,6 +88,8 @@ Line intersection_line(Circle c1, Circle c2) {
 }
 
 pair<Point, Point> intersection_point(Circle circle, Line line) {
+    // 円と直線の共有店の座標
+
     auto [a, b, c] = line.coefficient();
     auto [p, r] = circle;
     auto [x, y] = unpack(p);
@@ -62,6 +100,7 @@ pair<Point, Point> intersection_point(Circle circle, Line line) {
 }
 
 pair<Point, Point> intersection_point(Circle c1, Circle c2) {
+    // 2円の共有点の座標
     auto [p1, r1] = c1;
     auto [p2, r2] = c2;
     auto [x1, y1] = unpack(p1);
@@ -69,12 +108,4 @@ pair<Point, Point> intersection_point(Circle c1, Circle c2) {
 
     Line line(2 * (x2 - x1), 2 * (y2 - y1), (x1 + x2) * (x1 - x2) + (y1 + y2) * (y1 - y2) + (r2 + r1) * (r2 - r1));
     return intersection_point(c1, line);
-}
-
-inline double dist(Point &s, Point &t) {
-    return abs(s - t);
-}
-
-Point mid_point(Point &s, Point &t) {
-    return (s + t) / 2.0;
 }
